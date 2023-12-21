@@ -1,0 +1,24 @@
+int Solution::solve(vector<int> &A, int B) {
+    int i=0,j=0;
+    int max_len=0;
+    while(j<A.size())
+    {
+        while(j<A.size() && B!=0)
+        {
+            if(A[j]==0)
+                B--;
+            j++;
+        }
+        while(j<A.size() && A[j]==1)
+            j++;
+        if( j-i>max_len)
+            max_len=j-i;
+        while(j<A.size() && i<=j && B!=1)
+        {
+            if(A[i]==0)
+                B++;
+            i++;
+        }
+    }
+    return max_len;
+}

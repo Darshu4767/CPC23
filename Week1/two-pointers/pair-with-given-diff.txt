@@ -1,0 +1,18 @@
+int Solution::solve(vector<int> &A, int B) {
+    sort(A.begin(),A.end());
+    int i=0,j=1;
+    B=abs(B);
+    while(i<j && j<A.size())
+    {
+        //cout<<A[i]<<" "<<A[j]<<"\n";
+        int diff=A[j]-A[i];
+        if(diff==B) return 1;
+        if(diff<B)
+            j++;
+        else
+            i++;
+        if(i==j)
+            j++;
+    }
+    return 0;
+}

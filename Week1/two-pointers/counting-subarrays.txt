@@ -1,0 +1,35 @@
+int Solution::solve(vector<int> &A, int B) {
+    int i=0,j=0;
+    int sum=0;
+    int c=0;
+    while(j<A.size())
+    {
+        
+        while(j<A.size())
+        {
+            sum+=A[j];
+            if(sum<B)
+            {
+                c+=j-i+1;
+                //cout<<i<<" "<<j<<" "<<c<<"\n";
+                j++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if(j==A.size())
+            break;
+        while(sum>=B)
+        {
+            sum-=A[i];
+            i++;
+        }
+        c+=j-i+1;
+        //cout<<i<<" "<<j<<" "<<c<<"\n";
+        j++;
+        
+    }
+    return c;
+}
