@@ -1,0 +1,25 @@
+
+int atmost(vector<int>A, int B)
+{
+    int i=0, c=0, ans=0;
+    unordered_map<int,int>m;
+    for(int j=0;j<A.size();j++)
+    {
+        if(m[A[j]]==0)
+            c++;
+        m[A[j]]++;
+        while(c>B)
+        {
+            m[A[i]]--;
+            if(m[A[i]]==0)
+                c--;
+            i++;
+        }
+        ans+=j-i+1;
+    }
+    return ans;
+}
+int Solution::solve(vector<int> &A, int B) {
+    return atmost(A,B)-atmost(A,B-1);
+}
+

@@ -1,0 +1,12 @@
+int Solution::maxArea(vector<int> &A) {
+    int i=0,j=A.size()-1,ans=0;
+    while(i<A.size() && j>=0)
+    {
+        ans=max(ans,abs(j-i)*min(A[j],A[i]));
+        if(A[j]>A[i])
+            i++;
+        else
+            j--;
+    }
+    return ans;
+}
