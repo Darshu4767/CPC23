@@ -1,0 +1,96 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// } Driver Code Ends
+//User function template for C++
+class Solution{
+public:
+	vector<int> generateNextPalindrome(int nums[], int n) {
+	    vector<int>num;
+	    for(int i=0;i<n;i++)
+	        num.push_back(nums[i]);
+	    int l,r;
+	    l=n/2-1;
+	    if(n%2==0)
+	    {
+	        r=n/2;
+	    }
+	    else
+	    {
+	        r=n/2+1;
+	    }
+	    while(l>=0 && num[l]==num[r])
+	    {
+	        l--;
+	        r++;
+	    }
+	    int carry=0;
+	    if(l<0 || num[l]<num[r])
+	    {
+	        int p=(n-1)/2;
+	        
+	        int t=num[p]+1;
+	        num[p]=t%10;
+	        carry=t/10;
+	        p--;
+	        while(p>=0 && carry!=0)
+	        {
+	            t=num[p]+1;
+	            num[p]=t%10;
+	            carry=t/10;
+	            p--;
+	        }
+	        
+	    }
+	    if(carry==1)
+	    {
+	        num.insert(num.begin(),1);
+	    }
+	    n=num.size();
+	    l=n/2-1;
+	    if(n%2==0)
+	    {
+	        r=n/2;
+	    }
+	    else
+	    {
+	        r=n/2+1;
+	    }
+	    while(l>=0)
+	    {
+	        num[r]=num[l];
+	        r++;
+	        l--;
+	    }
+	    
+	    return num;
+	}
+
+};
+
+//{ Driver Code Starts.
+
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int num[n];
+        for (int i = 0; i < n; i++) {
+            cin >> num[i];
+        }
+        Solution ob;
+        auto ans = ob.generateNextPalindrome(num, n);
+        for (auto x : ans) {
+            cout << x << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+
+// } Driver Code Ends

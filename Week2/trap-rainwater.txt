@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int lmax=0;
+        int rmax=0,lpos=0,rpos=height.size()-1,res=0;
+        while(lpos<=rpos)
+        {
+            if(height[lpos]>lmax)
+            {
+                lmax=height[lpos];
+                lpos++;
+            }
+            else if(height[rpos]>rmax)
+            {
+                rmax=height[rpos];
+                rpos--;
+            }
+            else if(lmax<=rmax)
+            {
+                res+=lmax-height[lpos];
+                lpos++;
+            }
+            else
+            {
+                res+=rmax-height[rpos];
+                rpos--;
+            }
+        }
+        return res;
+    }
+};
