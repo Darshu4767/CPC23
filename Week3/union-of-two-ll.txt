@@ -1,0 +1,52 @@
+/*
+// structure of the node is as follows
+
+struct node
+{
+	int data;
+	struct node* next;
+	
+	node(int x){
+	    data = x;
+	    next = NULL;
+	}
+	
+};
+
+*/
+class Solution
+{
+    public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2)
+    {
+        Node* h=NULL,*t=NULL,*t1=head1,*t2=head2;
+        map<int,int>m;
+        while(t1!=NULL)
+        {
+            m[t1->data]++;
+            t1=t1->next;
+        }
+        while(t2!=NULL)
+        {
+            m[t2->data]++;
+            t2=t2->next;
+        }
+        for(auto i:m)
+        {
+            Node* n=(Node*)malloc(sizeof(Node));
+            n->data=i.first;
+            n->next=NULL;
+            if(h==NULL)
+            {
+                h=n;
+                t=n;
+            }
+            else
+            {
+                t->next=n;
+                t=t->next;
+            }
+        }
+        return h;
+    }
+};
