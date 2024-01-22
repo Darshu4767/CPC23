@@ -1,0 +1,76 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        int n=0;
+        ListNode* t=head;
+        while(t!=NULL)
+        {
+            t=t->next;
+            n++;
+        }
+        int r=n-k+1;
+        if(r==k)
+            return head;
+        if(r<k)
+            swap(r,k);
+        
+        ListNode* prevr=NULL, *prevk=NULL,*prev=NULL,*curr,*curk;
+        int c=1;
+        t=head;
+        while(t!=NULL)
+        {
+            if(c==k)
+            {
+                prevk=prev;
+                curk=t;
+            }
+            else if(c==r)
+            {
+                prevr=prev;
+                curr=t;
+                break;
+            }
+            c++;
+            prev=t;
+            t=t->next;
+        }
+        ListNode* nextr=curr->next, *nextk=curk->next;
+        
+        if(r==k+1)
+        {
+            if(k==1)
+            {
+                curr->next=head;
+                head->next=NULL;
+                return curr;
+            }
+            prevk->next=curr;
+            curr->next=curk;
+            curk->next=nextr;
+            return head;
+        }
+        if(k==1)
+        {
+            prevr->next=curk;
+            curk->next=NULL;
+            curr->next=nextk;
+            head=curr;
+            return head;
+        }
+        prevk->next=curr;
+        curr->next=nextk;
+        prevr->next=curk;
+        curk->next=nextr;
+        return head;
+    }
+};

@@ -1,0 +1,36 @@
+
+
+/* Linked list node structure
+struct Node
+{
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+};*/
+
+/*The method multiplies 
+two  linked lists l1 and l2
+and returns their product*/
+
+/*You are required to complete this method*/
+long long mod=1e9+7;
+long long  multiplyTwoLists (Node* l1, Node* l2)
+{
+    long long res=0,mcand=0;
+    while(l1!=NULL)
+    {
+        mcand=((mcand*10)%mod+l1->data)%mod;
+        l1=l1->next;
+    }
+    while(l2!=NULL)
+    {
+        res=((res*10)%mod+(mcand*l2->data)%mod)%mod;
+        l2=l2->next;
+    }
+    return res;
+}

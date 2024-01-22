@@ -1,0 +1,35 @@
+//User function template for C++
+class Solution{
+public:	
+	
+	vector<int> findSum(vector<int> &a, vector<int> &b) {
+	    int n=a.size();
+	    int m=b.size();
+	    if(n<m)
+	    {
+	        swap(a,b);
+	        swap(n,m);
+	    }
+	    int d=n-m;
+	    vector<int>ans(n+1);
+	    int carry=0;
+	    for(int i=m-1;i>=0;i--)
+	    {
+	        int sum=b[i]+a[i+d]+carry;
+	        ans[i+d+1]=sum%10;
+	        carry=sum/10;
+	    }
+	    for(int i=d-1;i>=0;i--)
+	    {
+	        int sum=a[i]+carry;
+	        ans[i+1]=sum%10;
+	        carry=sum/10;
+	    }
+	    if(carry==0)
+	        ans.erase(ans.begin(),ans.begin()+1);
+	   else
+	    ans[0]=carry;
+	   return ans;
+	}
+
+};
