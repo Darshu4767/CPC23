@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
+        vector<int>f;
+        unordered_map<int,int>m;
+        int k=0;
+        for(auto i:intervals)
+        {
+            f.push_back(i[0]);
+            m[i[0]]=k;
+            k++;
+        }
+        sort(f.begin(),f.end());
+        vector<int>res;
+        for(auto i:f)
+            cout<<i<<" ";
+        cout<<"\n";
+        for(auto i:intervals)
+        {
+            cout<<i[1]<<" ";
+            auto t=lower_bound(f.begin(),f.end(),i[1]);
+            if(t==f.end())
+            {
+                res.push_back(-1);
+            }
+            else
+                res.push_back(m[*t]);
+        }
+        return res;
+    }
+};

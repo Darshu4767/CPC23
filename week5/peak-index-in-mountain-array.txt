@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int s=0;
+        int n=arr.size(), e=n-1;
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            cout<<m<<"\n";
+            if(m>0 && arr[m]>arr[m-1])
+            {
+                if(m<n-1 && arr[m]>arr[m+1])
+                    return m;
+                s=m+1;
+            }
+            else
+            {
+                if(m<n-1 && arr[m]>arr[m+1])
+                    e=m-1;
+                else
+                s=m+1;
+            }
+        }
+        if(s==0)
+            return 0;
+        return n-1;
+    }
+};

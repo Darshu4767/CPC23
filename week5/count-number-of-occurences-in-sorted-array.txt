@@ -1,0 +1,32 @@
+//User function template for C++
+class Solution{
+public:	
+	/* if x is present in arr[] then returns the count
+		of occurrences of x, otherwise returns 0. */
+	int count(int arr[], int n, int x) {
+	    int s=0,e=n-1;
+	    int l=-1,r=-1;
+	    while(s<=e)
+	    {
+	        int m=(s+e)/2;
+	        if(arr[m]<=x)
+	            s=m+1;
+	        else
+	            e=m-1;
+	    }
+	    l=s;
+	    s=0,e=n-1;
+	    while(s<=e)
+	    {
+	        int m=(s+e)/2;
+	        if(arr[m]<x)
+	            s=m+1;
+	        else
+	            e=m-1;
+	    }
+	    r=s;
+	    if(l>r)
+	        return l-r;
+	   return 0;
+	}
+};

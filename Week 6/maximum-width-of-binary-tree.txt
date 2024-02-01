@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    int height(Node* root)
+    {
+        if(root==NULL)
+            return 0;
+        return 1+max(height(root->left),height(root->right));
+    }
+    void levelorder(Node* t,int l, int i, int& k)
+    {
+        if(t==NULL || l>i)
+            return;
+        if(i==l)
+        {
+            k++;
+            
+        }
+        levelorder(t->left,l+1,i,k);
+        levelorder(t->right,l+1,i,k);
+    }
+    void traverse(Node* t,vector<int>&v,int l)
+    {
+        if(t==NULL)
+            return ;
+        v[l]++;
+        traverse(t->left,v,l+1);
+        traverse(t->right,v,l+1);
+    }
+    int getMaxWidth(Node* root) {
+            
+        int h=height(root);
+        vector<int>v(h);
+        traverse(root,v,0);
+        return *max_element(v.begin(),v.end());
+    }
+};
