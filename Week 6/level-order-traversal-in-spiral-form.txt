@@ -1,0 +1,43 @@
+vector<int> findSpiral(Node *root)
+{
+    if(root==NULL)
+        return {};
+    deque<Node*>q;
+    q.push_back(root);
+    int s=1;
+    int i=1;
+    vector<int>res;
+    while(!q.empty())
+    {
+        if(i%2)
+        {
+            while(s--)
+            {
+                Node* n=q.back();
+                q.pop_back();
+                res.push_back(n->data);
+                if(n->right!=NULL)
+                    q.push_front(n->right);
+                if(n->left!=NULL)
+                    q.push_front(n->left);
+            }
+        }
+        else
+        {
+            while(s--)
+            {
+                Node* n=q.front();
+                q.pop_front();
+                res.push_back(n->data);
+                
+                if(n->left!=NULL)
+                    q.push_back(n->left);
+                if(n->right!=NULL)
+                    q.push_back(n->right);
+            }
+        }
+        s=q.size();
+        i++;
+    }
+    return res;
+}

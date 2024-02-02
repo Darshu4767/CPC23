@@ -1,0 +1,42 @@
+
+class Solution{
+    public:
+    void connect(Node *root)
+    {
+        queue<Node*>q;
+        if(root==NULL)
+            return;
+        int s=1;
+        q.push(root);
+        while(!q.empty())
+        {
+            Node* t=q.front();
+            q.pop();
+            if(t->left!=NULL)
+                q.push(t->left);
+            if(t->right!=NULL)
+                q.push(t->right);
+            s--;
+            while(s--)
+            {
+                
+                Node* n=q.front();
+                q.pop();
+                t->nextRight=n;
+                t=n;
+                if(t->left!=NULL)
+                    q.push(t->left);
+                if(t->right!=NULL)
+                    q.push(t->right);
+                
+                
+            }
+            s=q.size();
+        }
+    }
+};
+
+
+
+
+

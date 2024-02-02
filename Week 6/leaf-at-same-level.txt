@@ -1,0 +1,33 @@
+class Solution{
+  public:
+    int levels(Node* n)
+    {
+        if(n==NULL)
+            return 0;
+            
+        return 1+max(levels(n->left), levels(n->right));
+    }
+    void inorder(Node* n, bool& i, int t, int l)
+    {
+        if(n==NULL)
+            return;
+        if(n->left==NULL && n->right==NULL && t!=l)
+        {
+            //cout<<n->data<<" "<<t<<"\n";
+            i=false;
+            return ;
+        }
+        inorder(n->left, i,  t+1, l);
+        inorder(n->right, i, t+1, l);
+        
+    }
+    bool check(Node *node)
+    {
+        int l=levels(node);
+        
+        bool i=true;
+        int t=1;
+        inorder(node, i, t, l);
+       return i;
+    }
+};
