@@ -1,0 +1,15 @@
+int inorder(Node* n, int a)
+{
+    if(n==NULL)
+        return a;
+    a=inorder(n->right, a);
+    a=a+n->data;
+    n->data=a;
+    
+    a=inorder(n->left, a);
+}
+Node* modify(Node *root)
+{
+    int i=inorder(root, 0);
+    return root;
+}

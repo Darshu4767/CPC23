@@ -1,0 +1,25 @@
+class Solution{
+  public:
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    void inorder(Node* n, Node* x, Node* p)
+    {
+        if(n==NULL || p->left)
+            return;
+        inorder(n->left, x, p);
+        if(n->data>x->data && !p->left)
+        {
+            p->left=n;
+            return;
+        }
+        inorder(n->right, x, p);
+    }
+    Node * inOrderSuccessor(Node *root, Node *x)
+    {
+        if(root==NULL)
+            return NULL;
+        Node* p=new Node(0);
+        inorder(root, x, p);
+        return p->left;
+        
+    }
+};

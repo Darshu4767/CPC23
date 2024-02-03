@@ -1,0 +1,8 @@
+int minValue(Node* root) {
+    if(root==NULL)
+        return -1;
+    Node* t=root;
+    while(t->left!=NULL)
+        t=t->left;
+    return t->data;
+}
