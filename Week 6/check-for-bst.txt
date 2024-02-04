@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minimumTimeToInitialState(string word, int k) {
+        int t=-1;
+        for(int i=k;i<word.length();i+=k)
+        {
+            if(word.substr(i,word.length()-i)==word.substr(0,word.length()-i))
+                return i/k;
+        }
+        if(word.length()%k)
+            return word.length()/k+1;
+        return word.length()/k;
+    }
+};

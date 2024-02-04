@@ -1,0 +1,35 @@
+class Solution{
+public:    
+    bool isCompleteBT(Node* node){
+        if(node==NULL)
+         return {};
+      queue<Node*>q;
+      q.push(node);
+      int s=1;
+      vector<int>res;
+      Node* prev=NULL;
+      while(!q.empty())
+      {
+        while(s--)
+        {
+            Node* n=q.front();
+            q.pop();
+            
+            if(n)
+            {
+            q.push(n->left);
+            q.push(n->right);
+            }
+            else
+            {
+                if(!q.empty() && q.front()!=NULL)
+                    return false;
+            }
+            
+        }
+        s=q.size();
+        
+      }
+      return true;
+    }
+};

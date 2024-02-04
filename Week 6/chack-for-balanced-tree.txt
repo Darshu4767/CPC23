@@ -1,0 +1,17 @@
+class Solution{
+    public:
+    int height(Node* n)
+    {
+        if(n==NULL)
+            return 0;
+        return 1+max(height(n->left),height(n->right));
+    }
+    bool isBalanced(Node *root)
+    {
+        if(root==NULL)
+            return true;
+        if(abs(height(root->left)-height(root->right))>1)
+            return false;
+        return isBalanced(root->left) && isBalanced(root->right);
+    }
+};

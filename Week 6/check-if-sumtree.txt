@@ -1,0 +1,32 @@
+class Solution
+{
+    public:
+    bool leaf(Node* n)
+    {
+        if(n->right || n->left)
+            return false;
+        return true;
+    }
+    bool isSumTree(Node* root)
+    {
+        if(root==NULL || (!root->left && !root->right))
+            return true;
+        int sum=0;
+        if(root->left)
+        {
+            sum+=root->left->data;
+            if(!leaf(root->left))
+                sum+=root->left->data;
+        }
+       
+        if(root->right)
+        {
+            sum+=root->right->data;
+            if(!leaf(root->right))
+                sum+=root->right->data;
+        }
+        if(sum!=root->data)
+            return false;
+        return isSumTree(root->left)&&isSumTree(root->right);
+    }
+};
