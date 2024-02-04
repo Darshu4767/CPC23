@@ -1,0 +1,35 @@
+bool IsFoldable(Node* node)
+{
+    if(node==NULL)
+        return true;
+    queue<Node*>q;
+      q.push(node);
+      int s=1;
+      
+      while(!q.empty())
+      {
+         vector<int>res;
+        while(s--)
+        {
+            Node* n=q.front();
+            q.pop();
+            if(n)
+            {
+            res.push_back(1);
+            q.push(n->left);
+            q.push(n->right);
+            }
+            else
+                res.push_back(0);
+               
+            
+        }
+        for(int i=0;i<res.size();i++)
+        {
+            if(res[i]!=res[res.size()-i-1])
+                return false;
+        }
+        s=q.size();
+      }
+      return true;
+}

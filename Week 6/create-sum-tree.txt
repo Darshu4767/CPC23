@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int sum(Node* n)
+    {
+        if(n==NULL)
+            return 0;
+        int l=sum(n->left);
+        int r=sum(n->right);
+        int s=l+r+n->data;
+        n->data=l+r;
+        return s;
+    }
+    void toSumTree(Node *node)
+    {
+        int a=sum(node);
+    }
+};
