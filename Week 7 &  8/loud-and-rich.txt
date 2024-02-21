@@ -1,0 +1,44 @@
+class Solution {
+public:
+    void dfs(int i,int parent,vector<vector<int>>&edge,vector<int>&vis,vector<vector<int>>&ansc){
+        
+        vis[i]=1;
+        for(auto ele:edge[i]){
+            if(!vis[ele])dfs(ele,parent,edge,vis,ansc);
+        }
+        
+        if(i!=parent)
+            ansc[i].push_back(parent);
+    }
+    
+    
+    vector<int> loudAndRich(vector<vector<int>>& richer, vector<int>& quiet) {
+        int n=quiet.size();
+        vector<vector<int>>ansc(n),edge(n);
+        
+        for(auto ele:richer){
+            edge[ele[0]].push_back(ele[1]);
+        }
+        
+        for(int i=0;i<n;i++){
+            vector<int>vis(n);
+            dfs(i,i,edge,vis,ansc);
+        }
+        
+        vector<int>ans(n);
+        for(int i=0;i<n;i++){
+            int mini=quiet[i],a=i;
+            
+            for(auto ele:ansc[i]){
+                if(mini>=quiet[ele]){
+                    a=ele;
+                    mini=quiet[ele];
+                }
+            }
+            
+            ans[i]=a;
+        }
+        
+        return ans;
+    }
+};

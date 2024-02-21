@@ -1,0 +1,35 @@
+class Solution {
+public:
+    void dfs(int n, vector<int>& v, vector<vector<int>>& adj)
+    {
+        if(v[n])
+            return ;
+        v[n]=1;
+        for(auto i:adj[n])
+            dfs(i,v,adj);
+    }
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        vector<vector<int>>adj(n);
+        int e=connections.size();
+        if(e<n-1)
+            return -1;
+        int c=0;
+        for(auto i:connections)
+        {
+            adj[i[0]].push_back(i[1]);
+            adj[i[1]].push_back(i[0]);
+        }
+        connections.clear();
+        int res=0;
+        vector<int>visited(n,0);
+        for(int i=0;i<n;i++)
+        {
+            if(!visited[i])
+            {
+                res++;
+                dfs(i, visited, adj);
+            }
+        }
+        return res-1;
+    }
+};
